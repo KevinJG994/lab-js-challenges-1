@@ -27,9 +27,8 @@ function howManyTimes(repeatedWords, searchWord) {
 
 // Iteration 2 | Number Sequence
 
-const arrayLength = 5;
 let count = 0;
-let createArray = [];
+const createArray = [];
 
 function createSequence(arrayLength) {
   if (arrayLength == 0) {
@@ -47,7 +46,6 @@ console.log(createArray);
 
 // Iteration 3 | Multiply for Each
 const numbers = [1, 2, 5, 10, 13, 50];
-let numberMultiply = 5;
 
 function multiplyBy(numbers, numberMultiply) {
   if (numbers.length == 0) {
@@ -178,13 +176,26 @@ const matrix = [
   ],
 ];
 
-let result;
+
 function greatestProduct(matrix) {
-  const maximos = [];
+  let maxProduct = 0;
 
-    matrix.forEach((maxElement) => {
-      maximos.push(Math.max(...maxElement));
-    });
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[i].length; j++) {
 
-    return maximos;
+      if (j + 3 < matrix[i].length) {
+        const horizontalProduct =
+          matrix[i][j] * matrix[i][j + 1] * matrix[i][j + 2] * matrix[i][j + 3];
+        maxProduct = Math.max(maxProduct, horizontalProduct);
+      }
+
+      if (i + 3 < matrix.length) {
+        const verticalProduct =
+          matrix[i][j] * matrix[i + 1][j] * matrix[i + 2][j] * matrix[i + 3][j];
+        maxProduct = Math.max(maxProduct, verticalProduct);
+      }
+    }
+  }
+
+  return maxProduct;
 }
